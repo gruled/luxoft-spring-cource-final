@@ -41,7 +41,7 @@ class LuxoftSpringCourceFinalApplicationTests {
         secondCountry.setCodeName("sf");
         countryService.save(secondCountry);
 
-        List<Country> countries = countryService.getAllCountries().stream()
+        List<Country> countries = countryService.findAll().stream()
                 .filter(country ->
                         new OrSpecification<Country>(
                                 new NameCountryIs("First foundation"),
@@ -70,7 +70,7 @@ class LuxoftSpringCourceFinalApplicationTests {
         clientService.save(client);
 
         for (Client client1 : clientService.findAll()) {
-            System.out.println(client1+" asdadad");
+            System.out.println(client1);
         }
     }
 }
