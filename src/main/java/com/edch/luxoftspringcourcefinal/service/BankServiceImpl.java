@@ -5,8 +5,8 @@ import com.edch.luxoftspringcourcefinal.model.Bank;
 import com.edch.luxoftspringcourcefinal.repository.BankRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 @AllArgsConstructor
@@ -15,7 +15,7 @@ public class BankServiceImpl implements BankService {
     private final CountryService countryService;
 
     @Override
-    public List<Bank> findAll() {
+    public Flux<Bank> findAll() {
         return bankRepository.findAll();
     }
 
@@ -35,7 +35,7 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
-    public boolean existsById(Integer id) {
+    public Mono<Boolean> existsById(Integer id) {
         return bankRepository.existsById(id);
     }
 
@@ -43,14 +43,14 @@ public class BankServiceImpl implements BankService {
     public Bank convert(BankDto bankDto) {
         Bank bank = new Bank();
         bank.setName(bankDto.getName());
-        if (countryService.existsById(bankDto.getCountry())) {
-            bank.setCountry(countryService.getById(bankDto.getCountry()));
+        if (Boolean.TRUE.equals((countryService.existsById(bankDto.getCountry())).block())) {
+            bank.setCountry(countryService.getById(bankDto.getCountry()).block());
         }
         return bank;
     }
 
     @Override
-    public Bank getById(Integer id) {
-        return bankRepository.getById(id);
+    public Mono<Bank> getById(Integer id) {
+        return bankRepository.findById(id);
     }
 }

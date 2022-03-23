@@ -5,8 +5,8 @@ import com.edch.luxoftspringcourcefinal.model.Country;
 import com.edch.luxoftspringcourcefinal.repository.CountryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 @AllArgsConstructor
@@ -14,7 +14,7 @@ public class CountryServiceImpl implements CountryService {
     private final CountryRepository countryRepository;
 
     @Override
-    public List<Country> findAll() {
+    public Flux<Country> findAll() {
         return countryRepository.findAll();
     }
 
@@ -34,7 +34,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public boolean existsById(Integer id) {
+    public Mono<Boolean> existsById(Integer id) {
         return countryRepository.existsById(id);
     }
 
@@ -47,7 +47,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public Country getById(Integer id) {
-        return countryRepository.getById(id);
+    public Mono<Country> getById(Integer id) {
+        return countryRepository.findById(id);
     }
 }

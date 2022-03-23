@@ -6,8 +6,7 @@ import com.edch.luxoftspringcourcefinal.service.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/service/client")
@@ -17,13 +16,13 @@ public class ClientController {
 
     @GetMapping
     @ResponseBody
-    public List<Client> get() {
+    public Flux<Client> get() {
         return clientService.findAll();
     }
 
     @DeleteMapping
     public ResponseEntity delete(@RequestParam(name = "id") Integer id) {
-        if (clientService.existsById(id)) {
+        if (Boolean.TRUE.equals((clientService.existsById(id)).block())) {
             clientService.delete(id);
             return ResponseEntity.ok().build();
         } else {

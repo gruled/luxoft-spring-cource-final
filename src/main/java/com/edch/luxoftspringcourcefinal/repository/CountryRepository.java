@@ -1,13 +1,14 @@
 package com.edch.luxoftspringcourcefinal.repository;
 
 import com.edch.luxoftspringcourcefinal.model.Country;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Mono;
 
 @Repository
-public interface CountryRepository extends JpaRepository<Country, Integer> {
+public interface CountryRepository extends ReactiveMongoRepository<Country, Integer> {
 
-    Country getCountryByCodeName(String codeName);
+    Mono<Country> getCountryByCodeName(String codeName);
 
-    Country getCountryByName(String name);
+    Mono<Country> getCountryByName(String name);
 }

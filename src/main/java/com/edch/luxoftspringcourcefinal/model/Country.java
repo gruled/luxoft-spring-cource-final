@@ -1,12 +1,13 @@
 package com.edch.luxoftspringcourcefinal.model;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
 import java.util.Objects;
 
-@Table(name = "country")
-@Entity
+@Document
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,13 +16,12 @@ public class Country {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
     private Integer id;
 
-    @Column(name = "name")
+    @Field("name")
     private String name;
 
-    @Column(name = "code_name")
+    @Field("code_name")
     private String codeName;
 
     @Override

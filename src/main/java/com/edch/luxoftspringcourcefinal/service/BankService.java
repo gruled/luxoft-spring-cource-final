@@ -2,11 +2,11 @@ package com.edch.luxoftspringcourcefinal.service;
 
 import com.edch.luxoftspringcourcefinal.dto.BankDto;
 import com.edch.luxoftspringcourcefinal.model.Bank;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 public interface BankService {
-    List<Bank> findAll();
+    Flux<Bank> findAll();
 
     void save(Bank bank);
 
@@ -14,9 +14,9 @@ public interface BankService {
 
     void delete(Integer id);
 
-    boolean existsById(Integer id);
+    Mono<Boolean> existsById(Integer id);
 
     Bank convert(BankDto bankDto);
 
-    Bank getById(Integer id);
+    Mono<Bank> getById(Integer id);
 }

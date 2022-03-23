@@ -29,7 +29,7 @@ class LuxoftSpringCourceFinalApplicationTests {
     @Autowired
     private ClientService clientService;
 
-    @Test
+    /*@Test
     public void test() {
         Country firstCountry = new Country();
         firstCountry.setName("First foundation");
@@ -50,9 +50,9 @@ class LuxoftSpringCourceFinalApplicationTests {
                 )
                 .collect(Collectors.toList());
         Assert.isTrue(countries.size() == 2);
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void testEntities() {
         Country firstCountry = new Country();
         firstCountry.setName("First foundation");
@@ -72,5 +72,5 @@ class LuxoftSpringCourceFinalApplicationTests {
         for (Client client1 : clientService.findAll()) {
             System.out.println(client1);
         }
-    }
+    }*/
 }

@@ -6,8 +6,7 @@ import com.edch.luxoftspringcourcefinal.service.CountryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/service/country")
@@ -17,13 +16,13 @@ public class CountryController {
 
     @GetMapping
     @ResponseBody
-    public List<Country> get() {
+    public Flux<Country> get() {
         return countryService.findAll();
     }
 
     @DeleteMapping
     public ResponseEntity delete(@RequestParam(name = "id") Integer id) {
-        if (countryService.existsById(id)) {
+        if (Boolean.TRUE.equals((countryService.existsById(id)).block())) {
             countryService.delete(id);
             return ResponseEntity.ok().build();
         } else {

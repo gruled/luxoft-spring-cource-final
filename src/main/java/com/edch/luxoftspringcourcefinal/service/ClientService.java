@@ -2,11 +2,11 @@ package com.edch.luxoftspringcourcefinal.service;
 
 import com.edch.luxoftspringcourcefinal.dto.ClientDto;
 import com.edch.luxoftspringcourcefinal.model.Client;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 public interface ClientService {
-    List<Client> findAll();
+    Flux<Client> findAll();
 
     void save(Client client);
 
@@ -14,7 +14,7 @@ public interface ClientService {
 
     void delete(Integer id);
 
-    boolean existsById(Integer id);
+    Mono<Boolean> existsById(Integer id);
 
     Client convert(ClientDto clientDto);
 }

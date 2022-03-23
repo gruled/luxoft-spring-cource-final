@@ -2,11 +2,11 @@ package com.edch.luxoftspringcourcefinal.service;
 
 import com.edch.luxoftspringcourcefinal.dto.CountryDto;
 import com.edch.luxoftspringcourcefinal.model.Country;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 public interface CountryService {
-    List<Country> findAll();
+    Flux<Country> findAll();
 
     void save(Country country);
 
@@ -14,9 +14,9 @@ public interface CountryService {
 
     void delete(Integer id);
 
-    boolean existsById(Integer id);
+    Mono<Boolean> existsById(Integer id);
 
     Country convert(CountryDto countryDto);
 
-    Country getById(Integer id);
+    Mono<Country> getById(Integer id);
 }

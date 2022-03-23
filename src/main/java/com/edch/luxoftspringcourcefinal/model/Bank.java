@@ -1,26 +1,26 @@
 package com.edch.luxoftspringcourcefinal.model;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 
-@Table(name = "bank")
-@Entity
+@Document
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Bank {
     @Id
-    @GeneratedValue
     private Integer id;
 
-    @Column(name = "name")
+    @Field("name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "country")
+    @Field("country")
     private Country country;
 
     @Override
